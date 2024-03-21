@@ -1,0 +1,9 @@
+Package: daniel.analytics
+Name: OSAnalytics
+Version: 0.0.1
+Architecture: iphoneos-arm
+Description: Enables various enhancements within stock iOS crashlogs
+Maintainer: daniel
+Author: daniel
+Section: Tweaks
+Depends: mobilesubstrate
