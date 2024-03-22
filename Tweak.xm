@@ -1,9 +1,29 @@
 #import <Foundation/Foundation.h>
 
-extern "C" bool os_variant_has_internal_diagnostics(const char *subsystem);
-%hookf(bool, os_variant_has_internal_diagnostics, const char *subsystem) {
-    if(!strcmp(subsystem, "com.apple.OSAnalytics")) {
-        return true;
-    }
-    return %orig;
+%hook OSASystemConfiguration
+
+- (BOOL)appleInternal {
+    return TRUE;
 }
+
+- (id)releaseType {
+    return @"Internal";
+}
+
+- (id)systemId {
+    return @"<internal>";
+}
+
+%end
+
+%hook OSAProxyConfiguration
+
+- (NSString *)releaseType {
+    return @"Internal";
+}
+
+- (NSString *)targetAudience {
+    return @"Internal";
+}
+
+%end
